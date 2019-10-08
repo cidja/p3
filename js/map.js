@@ -69,13 +69,18 @@ $(document).ready(function(){ //charge le script quand la page est chargée
           if(status === "OPEN"){ //Si status station open 
             if(velosDisponible > 3){ //Si nombre de vélos disponible > 3 on affiche icon verte 
               let marker = L.marker([coordsLat, coordsLong], {icon : greenIcon}).addTo(map);
-              marker.bindPopup(`Station -> ${nameConvert} <br> adresse -> ${addresse} <br> Nombre de places -> ${nbPlaces} <br> Vélos disponible -> <strong>${velosDisponible}</strong>`);
-              marker.on('click', function(){
-              document.getElementById('conteneurstation').style.display = 'flex';
-              $("#nomstation").html("Pour réserver un vélo à la station : " + nameConvert); //affiche le nom de la station dans la balise span avec l'id reponseNomStation
-                /*$('#reponseAdresse').html(addresse); // etc...
-                $('#reponseNbrePlaces').html(nbPlaces); // etc...
-                $("#reponseVelosDisponible").html(velosDisponible); //etc..*/
+              marker.bindPopup(`
+              Station -> ${nameConvert} 
+              <br>
+               adresse -> ${addresse}
+              <br> 
+              Nombre de places -> ${nbPlaces} 
+              <br>
+              Vélos disponible -> <strong>${velosDisponible}</strong> 
+              <br>
+              <input type="submit" id="boutonreserver" value="réserver">`);
+              $('#boutonreserver').on('click', function(){
+                console.log("test");
               });
 
             } 
