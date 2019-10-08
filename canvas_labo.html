@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas labo</title>
+    <style>
+        #canvas{
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tet d'un canvas</h1>
+    <canvas id='canvas'></canvas>
+    <form method='get' action="#">
+        <label for='largeurRectangle'>Choisissez la largeur du rectangle :
+                <input id='inputlargeur' type='number' />
+        </label>
+        <label for="hauteurRectangle">Choisissez la longueur du rectangle :
+                <input id='inputhauteur' type='number' />
+        </label>
+        <input id='submit' type="submit" value='valider'/>
+    </form>
+
+    <p></p>
+    <script src='../js/jquery.js'></script>
+    <script>
+            
+                    let inputLargeur = document.getElementById('inputlargeur');
+                    let inputHauteur = document.getElementById('inputhauteur');
+                    let submit = document.getElementById('submit');
+               
+                    submit.addEventListener("click", function(){
+                        let largeur = inputLargeur.value;
+                        let hauteur = inputHauteur.value;
+                        draw(largeur, hauteur);
+                        
+                    });
+                   
+                    function draw(largeur, hauteur){
+                    let canvas = document.getElementById('canvas');
+                    ctx = canvas.getContext('2d');
+            
+                    ctx.moveTo(25, 25);
+                    ctx.fillRect(50, 50, largeur, hauteur);
+                }
+          
+                </script>
+</body> 
+
+</html>

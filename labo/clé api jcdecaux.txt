@@ -1,0 +1,5 @@
+source : https://developer.jcdecaux.com/#/account
+87166a79118dbedb3a843f9471b4c86be316f142
+
+test api:
+https://api.jcdecaux.com/vls/v1/stations?contract=nancy&apiKey=87166a79118dbedb3a843f9471b4c86be316f142

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <canvas id='canvas'></canvas>
+    </div>
+    <div>Dessin d'un smiley
+        <canvas id='canvasSmiley'></canvas>
+    </div>
+    <div>
+        Dessin de plusieurs lignes
+        <canvas id='canvasline'></canvas>
+    </div>
+    <div>
+        Dessin avec création d'objet path2D
+        <canvas id='canvaspath2d'></canvas>
+    </div>
+    <script>
+        function draw(){
+    let canvas = document.getElementById('canvas');
+    if(canvas.getContext){
+        let ctx = canvas.getContext('2d'); //Code du dessin dans le canvas
+        //Pour dessiner des formes complexes
+        ctx.beginPath(); //on démarre le tracé
+        ctx.moveTo(75, 50); //point de démarrage
+        ctx.lineTo(100, 75); //Crée une ligne
+        ctx.lineTo(100, 25);
+        ctx.stroke();
+        
+    } else{
+        //Code pour le cas ou le canvas ne sera pas pris en charge
+    }
+}
+    function drawSmiley(){
+        let canvasSmiley = document.getElementById('canvasSmiley');
+    if(canvasSmiley.getContext){
+        let ctx = canvasSmiley.getContext('2d'); //Code du dessin dans le canvas
+        ctx.beginPath();
+    ctx.arc(75, 75, 50, 0, Math.PI * 2, true);  // Cercle extérieur
+    ctx.moveTo(110,75);
+    ctx.arc(75, 75, 35, 0, Math.PI, false);  // Bouche (sens horaire)
+    ctx.moveTo(65, 65);
+    ctx.arc(60, 65, 5, 0, Math.PI * 2, true);  // Oeil gauche
+    ctx.moveTo(95, 65);
+    ctx.arc(90, 65, 5, 0, Math.PI * 2, true);  // Oeil droite
+    ctx.stroke();
+} else{
+    //Si pas pris en charge
+}
+    }
+    function drawLine(){
+        let canvasLine = document.getElementById('canvasline');
+        let ctx = canvasLine.getContext('2d');
+        //triange plein
+        ctx.beginPath();
+        ctx.moveTo(25, 25);
+        ctx.lineTo(105, 25);
+        ctx.lineTo(25, 105);
+        ctx.fill();
+        //triangle filaire
+        ctx.beginPath();
+        ctx.moveTo(125, 125);
+        ctx.lineTo(125, 45);
+        ctx.lineTo(45, 125);
+        ctx.closePath(); //pour le filaire clos la figure
+        ctx.stroke();
+    }
+
+    //on peut aussi créer des objets avec path2D
+    function dessiner(){
+        let canvaspath = document.getElementById('canvaspath2d');
+        if(canvaspath.getContext){
+            let ctx = canvaspath.getContext('2d');
+
+            let rectangle = new Path2D();
+            rectangle.rect(10, 10, 50, 50);
+
+            let cercle = new Path2D();
+            cercle.moveTo(125, 35);
+            cercle.arc(100, 35, 25, 0, 2 * Math.PI);
+
+            ctx.stroke(rectangle); //on appel l'objet crée
+            ctx.fill(cercle);
+        }
+    }
+draw();
+drawSmiley();
+drawLine();
+dessiner();
+    </script>
+</body>
+</html>

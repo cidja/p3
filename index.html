@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>La carte de location de vélo</title>
+        <meta charset='utf8' /> <!--Définition d'un encodage d'écriture-->
+        <link rel='stylesheet' href='css/main.css' /> <!--Inclusion du fihicer main.css pour les classes générique-->
+        <link rel='stylesheet' href='css/style.css' /> <!--Inclusion du fichier style.css pour les règles css spécifiques-->
+        <link rel='stylesheet' href='fonts/css/all.css' /> <!--pour la police font awesome source: https://fontawesome.com/how-to-use/on-the-web/setup/hosting-font-awesome-yourself-->
+        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> <!--Inclusion de la police google  police Nunito!-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" /> <!--POur gérer la carte CDN-->
+        <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script> <!--Inlusion fichiers pour maps leaflet-->
+       <script src='js/jquery.js'></script> <!--Inclusion du cdn jquery-->
+    </head>
+    <body>
+    <div class='titre1Conteneur txtcenter'>
+        <h1 class='titre1'>Bienvenue sur la page de réservation de location de vélo</h1>
+    </div>
+    <div class='blocSlider autolr maxw1400px borderTest flex plus'>
+        <div id="slider" class='prelative plus'>
+            <img id='imgSlider' src='img/1.png'>
+            
+                <div id='flecheGauche' class='pabsolute plus'>
+                    <i class="far fa-arrow-alt-circle-left"></i>
+                </div>
+                <div id='flecheDroite' class='pabsolute'>
+                    <i class="far fa-arrow-alt-circle-right"></i>
+                </div>
+            
+        </div>
+    </div>
+
+    <!--Conteneur pour la map et la partie détails réservation-->
+    <div class="conteneurMapReservation maxw1400px autolr w100p mt80px pad30px borderTest flex justify-around">
+        <!--Partie map-->
+        <div id="map" class="map h400px w60p borderTest">
+
+        </div>
+            
+        <!--Partie détails de la réservation qui apparait au clic sur une station dans la partie map-->
+        <div id='conteneurstation' class="conteneurDetailStation flex justify-flex-start flexdcol w30p borderTest">
+            
+            <div class="formReservation mt20px txtcenter">
+                <div id='nomstation'> <!--Va afficher le nom de la station au clic sur un marker sur la carte-->
+
+                </div> 
+                <form>
+                    <label for="nom"><input type="text" name="nom" id="nom" placeholder="nom"></label>
+                    <br/>
+                    <label for="prenom"><input type="text" name="prenom" id="prenom" placeholder="prénom"></label>
+                    <br/>
+                    <input type="submit" id='boutonreserver' value="réserver" />
+                </form>
+            </div>
+            <canvas id='canvas' class='borderTest'>
+                <!--Contenu de repli en cas de vieux navigateur qui n'affiche pas les canvas source: https://developer.mozilla.org/fr/docs/Tutoriel_canvas/Utilisation_de_base-->
+                Ceci est un cadre pour réserver un vélo et y apposer sa signature 
+            </canvas>
+        </div>
+    </div>
+
+    <!--Partie infos réservation qui apparait quand le visiteur a réservé un vélo-->
+    <div class="infosReservation borderTest maxw1400px autolr w100p mt80px pad30px">
+        <div  id='texttimer'>
+            <div  id='timer'></div>
+        </div>
+    </div>
+
+    <!--Inclusion des scripts js-->
+        <script src='js/ajax.js'></script> <!--Inclusion des requêtes Ajax-->
+        <script src='js/slider.js'></script>
+        <script src='js/map.js'></script> <!--Inclusion du js pour la map (source: https://openlayers.org/en/latest/doc/quickstart.html-->
+        <script src='js/canvas.js'></script>
+        <script src='js/timer.js'></script>
+      
+    </body>
+</html>
