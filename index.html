@@ -30,30 +30,28 @@
     </div>
 
     <!--Conteneur pour la map et la partie détails réservation-->
-    <div class="conteneurMapReservation maxw90p autolr w100p mt80px pad30px borderTest flex">
+    <div class="conteneurMapReservation maxw90p autolr w100p mt80px pad30px borderTest flex ">
         <!--Partie map-->
         <div id="map" class="map h600px w80p borderTest">
 
         </div>
-            
+     
         <!--Partie détails de la réservation qui apparait au clic sur une station dans la partie map-->
-        <div id='conteneurstation' class="conteneurDetailStation dnone w30p borderTest">
-            
-            <div class="formReservation mt20px txtcenter dnone">
-                 
+        <div id='conteneurstation' class="conteneurDetailStation  w30p borderTest dnone  flexdcol justify-center align-center"> 
+            <input type="button" id="boutonreserver" value="réserver">
+            <div id="formreservation" class="mt20px txtcenter dnone">
+                <div id=choixstation></div>
                 <form>
                     <label for="nom"><input type="text" name="nom" id="nom" placeholder="nom"></label>
                     <br/>
                     <label for="prenom"><input type="text" name="prenom" id="prenom" placeholder="prénom"></label>
                     <br/>
-                    <input type="submit" id='boutonreserver' value="réserver" />
                 </form>
                 <canvas id='canvas' class='borderTest'></canvas>
+
+                <input id='validationbutton' type='button' value='valider'/>
             </div>
-            
-                <!--Contenu de repli en cas de vieux navigateur qui n'affiche pas les canvas source: https://developer.mozilla.org/fr/docs/Tutoriel_canvas/Utilisation_de_base-->
-                Ceci est un cadre pour réserver un vélo et y apposer sa signature 
-            </canvas>
+
         </div>
     </div>
 

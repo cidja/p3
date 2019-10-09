@@ -76,28 +76,29 @@ $(document).ready(function(){ //charge le script quand la page est chargée
               <br> 
               Nombre de places -> ${nbPlaces} 
               <br>
-              Vélos disponible -> <strong>${velosDisponible}</strong> 
-              <br>
-              <input type="submit" id="boutonreserver" value="réserver">`);
-              $('#boutonreserver').on('click', function(){
-                console.log("test");
+              Vélos disponible -> <strong>${velosDisponible}</strong>`);
+              $(marker).on('click', function(){
+              $('#conteneurstation').css('display' , 'flex'); //jquery affiche le div conteneur station au click sur un marker 
+              $('#choixstation').html("Station sélectionnée : " + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
               });
 
             } 
             else if((velosDisponible <= 3) & (velosDisponible > 0)) { //Sinon on affiche icon orange 
               let marker = L.marker([coordsLat, coordsLong], {icon : orangeIcon}).addTo(map);
               marker.bindPopup(`Station -> ${nameConvert} <br> adresse -> ${addresse} <br> Nombre de places -> ${nbPlaces} <br> Vélos disponible -> <strong>${velosDisponible}</strong>`);
-              marker.on('click', function(){
-                document.getElementById('conteneurstation').style.display = 'flex';
-                $("#reponseNomStation").html(nameConvert);
-                $('#reponseAdresse').html(addresse);
-                $('#reponseNbrePlaces').html(nbPlaces);
-                $("#reponseVelosDisponible").html(velosDisponible);
-              });
-            }
+              marker.bindPopup(`
+              Station -> ${nameConvert} 
+              <br>
+               adresse -> ${addresse}
+              <br> 
+              Nombre de places -> ${nbPlaces} 
+              <br>
+              Vélos disponible -> <strong>${velosDisponible}</strong>`);
+              }
+            
             else if(velosDisponible = 0) { //Si aucun vélo disponible affiche image orange barrée
               let marker = L.marker([coordsLat, coordsLong], {icon : orangeIconBarree}).addTo(map);
-              marker.bindPopup(`Station -> ${nameConvert} <br> adresse -> ${addresse} <br> Nombre de places -> ${nbPlaces} <br> Vélos disponible -> <strong>${velosDisponible}</strong>`);
+              marker.bindPopup('Désolé plus aucun vélos disponible actuellement sur cette station');
             }
           } 
           else { //Sinon affiche redIcon
@@ -134,6 +135,9 @@ $(document).ready(function(){ //charge le script quand la page est chargée
   initRerservationListener(){
     const boutonReserver = document.getElementById('boutonreserver');
     boutonReserver.addEventListener('click', function (){
+      $('#formreservation').show(); //affiche nom prenom canvas et bouton valider
+      
+      $('#boutonreserver').hide(); // display : none; sur bouton réserver
       this.canvas.clear();
       if (this.station.available_bikes > 0){
         confirmation.style
