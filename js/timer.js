@@ -1,21 +1,26 @@
-$(document).ready(function(){ //charge le script quand la page est chargée
+let intervalID = null;
 class Timer{
     constructor(){
         this.textTimer = document.getElementById('texttimer');
         this.sectionTimer = document.getElementById('timer');
+        this.restartExistingTimer();
+        
     }
 
-    start(stationAddress, startTime) {
+    start(stationAddress) {
         this.stationAddress = stationAddress;
         clearInterval(this.intervalID);
-        this.time = startTime;
-        this.intervalID = setInterval(() => {
-            this.sectionTimer.style.display = "block";
+        this.time = 1200;
+        if(intervalID !== null){
+            clearInterval(intervalID);
+        }
+        intervalID = setInterval(() => {
             sessionStorage.setItem("station", this.stationAddress);
             sessionStorage.setItem("timer", this.time);
             const{minutes, seconds} = this.getMinutesAndSeconds(this.time);
+            $('#texttimer').show();
             this.textTimer.innerHTML =
-            `Vous avez bien réservé un véla à <span>${this.stationAddress}<span> pour une durée de <span>${minutes}:${seconds}</span>`;
+            `Vous avez bien réservé un vélo à <span>${this.stationAddress}<span> pour une durée de <span>${minutes}:${seconds}</span>`;
             this.updateTime();
             if (this.time === 0){
                 clearInterval(this.intervalID);
@@ -24,9 +29,10 @@ class Timer{
                 sessionStorage.clear("station", "timer");
             }
         }, 1000)
+        document.getElementById('annulation').addEventListener('click', this.stopTime());
     }
     updateTime(){
-        this.time= this.time -1;
+        this.time = this.time -1; //on décrémente de 1 toutes les 1000 millisecondes (1sec)
         sessionStorage.setItem("timer", this.time);
     }
 
@@ -34,6 +40,15 @@ class Timer{
         if(sessionStorage.getItem("station") && sessionStorage.getItem('timer')){
             this.start(sessionStorage.getItem('station'), sessionStorage.getItem('timer'));
         }
+    }
+
+    stopTime(){ // pour arrêter le chrono
+        $('#annulation').on("click", function(){
+        clearInterval(intervalID);
+        $('#texttimer').hide();
+        
+    });
+
     }
 
     getMinutesAndSeconds() {
@@ -51,7 +66,6 @@ class Timer{
             seconds
         };
     }
+   
 
 }
-
-});

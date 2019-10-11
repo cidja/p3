@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type='button'>
+    <div id ='testrebour'></div>
+    <canvas id='canvas' style= "border: 2px solid black"></canvas>
+    <script src="js/jquery.js"></script>
+    <script>
 
 class Canvas{
     constructor() { //Constructeur de l'objet canvas
@@ -5,6 +19,7 @@ class Canvas{
     this.canvas = document.getElementById('canvas').getContext('2d'); //On cible l'élément canvas et on défini le context
     this.draw();
     this.clear();
+    this.remove();
     
     
     }
@@ -66,19 +81,17 @@ class Canvas{
             }
           }
         };
-   
-        /*$('#effacercanvas').mousedown(function(e)
-	{
-		clickX_simple = new Array();
-		clickY_simple = new Array();
-		clickDrag_simple = new Array();
-		clearCanvas_simple(); 
-	});
-      }*/
-      clear() {
-        
-        let ctx = this.canvas;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
+    clear() {
+        this.canvas.width = this.canvas.width;
       }
+
+    remove() {
+        
+    }
 }
+new Canvas;
+
+
+        </script>
+</body>
+</html>

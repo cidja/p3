@@ -1,4 +1,4 @@
-$(document).ready(function(){ //charge le script quand la page est chargée
+//$(document).ready(function(){ charge le script quand la page est chargée
   class Map{
   constructor() {
     this.map;
@@ -9,6 +9,7 @@ $(document).ready(function(){ //charge le script quand la page est chargée
     this.timer = new Timer();
     this.timer.restartExistingTimer();
     this.stockInfosNomPrenom();
+    this.clearCanvas();
   }
  
 /*------------------------------
@@ -77,15 +78,14 @@ $(document).ready(function(){ //charge le script quand la page est chargée
               Nombre de places -> ${nbPlaces} 
               <br>
               Vélos disponible -> <strong>${velosDisponible}</strong>`);
-              $(marker).on('click', function(){
+              $(marker).on('click', function() {
               $('#conteneurstation').css('display' , 'flex'); //jquery affiche le div conteneur station au click sur un marker 
-              $('#choixstation').html("Station sélectionnée : " + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
+              $('#choixstation').html("Station sélectionnée :  <span id=\"reservation\">" + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
               });
 
             } 
             else if((velosDisponible <= 3) & (velosDisponible > 0)) { //Sinon on affiche icon orange 
               let marker = L.marker([coordsLat, coordsLong], {icon : orangeIcon}).addTo(map);
-              marker.bindPopup(`Station -> ${nameConvert} <br> adresse -> ${addresse} <br> Nombre de places -> ${nbPlaces} <br> Vélos disponible -> <strong>${velosDisponible}</strong>`);
               marker.bindPopup(`
               Station -> ${nameConvert} 
               <br>
@@ -94,31 +94,29 @@ $(document).ready(function(){ //charge le script quand la page est chargée
               Nombre de places -> ${nbPlaces} 
               <br>
               Vélos disponible -> <strong>${velosDisponible}</strong>`);
-              }
+              $(marker).on('click', function(){
+              $('#conteneurstation').css('display' , 'flex'); //jquery affiche le div conteneur station au click sur un marker 
+              $('#choixstation').html("Station sélectionnée : " + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
+              });
+            }
             
             else if(velosDisponible = 0) { //Si aucun vélo disponible affiche image orange barrée
               let marker = L.marker([coordsLat, coordsLong], {icon : orangeIconBarree}).addTo(map);
               marker.bindPopup('Désolé plus aucun vélos disponible actuellement sur cette station');
             }
           } 
-          else { //Sinon affiche redIcon
-            document.getElementById('conteneurstation').style.display = 'flex';
+          else{ //Sinon affiche redIcon
             let marker = L.marker([coordsLat, coordsLong], {icon : redIcon}).addTo(map);
-            marker.on('click', function(){
-              $("#reponseNomStation").html(nameConvert);
-              $('#reponseAdresse').html(addresse);
-              $('#reponseNbrePlaces').html(nbPlaces);
-              $("#reponseVelosDisponible").html(velosDisponible);
-            });
-          } 
-        } //fin de for
+            marker.bindPopup("Cette station est fermée pour le moment veuillez nous excusez pour le dérangement.");
+            };
+          }  //fin de for
     });
   } //fin loadMarkers
 
   //utilisé quand le client va fermer ou actualiser son navigateur les  infos restent
     stockInfosNomPrenom(){ //on stock le nom et prénom dans un localstorage pour qu'ils soient prérempli au rechargement
-      const nom = document.getElementById('nom');
-      const prenom = document.getElementById('prenom');
+      let nom = document.getElementById('nom');
+      let prenom = document.getElementById('prenom');
       localStorage.setItem("nom", nom);
       localStorage.setItem("prenom", prenom);
 
@@ -134,21 +132,39 @@ $(document).ready(function(){ //charge le script quand la page est chargée
 
   initRerservationListener(){
     const boutonReserver = document.getElementById('boutonreserver');
-    boutonReserver.addEventListener('click', function (){
-      $('#formreservation').show(); //affiche nom prenom canvas et bouton valider
-      
+    boutonReserver.addEventListener('click',  () =>{
+      $('#formreservation').css('display', 'flex'); //affiche nom prenom canvas et bouton valider
       $('#boutonreserver').hide(); // display : none; sur bouton réserver
       this.canvas.clear();
-      if (this.station.available_bikes > 0){
-        confirmation.style
-      }
-    })
+      $('#validationbouton').on('click',  () =>{
+        let station = $('#reservation').text();
+        this.confirmation(station);
+      });
+  });
   }
 
+  confirmation(textStation){
+    
+    //-------------Block timer réservation 
+    //-----------------------------------
+    this.timer.start(textStation);
+      
+  }
+
+ 
+   
+
+  clearCanvas(){
+    $('#effacercanvas').on('click', () =>{
+      console.log("on rentre");
+      this.canvas.redraw();
+
+    })
+  }
 
 } //Fin de l'objet map
 new Map;
 
   
   
-});
+//});

@@ -1,0 +1,45 @@
+/*Pour Inserer la police d'écriture google si besoin
+    font-family: 'Nunito', sans-serif;
+*/
+
+*{
+    font-family: 'Nunito', sans-serif, "Arial"; /*Définition de la police d'écriture pour tous le document */
+}
+/*-----------------------------------------------------------------------------------------------------------
+            Partie slider 
+-----------------------------------------------------------------------------------------------------------*/
+.blocSlider{ /*Légèrement plus grand que le contenant pour voir les bordures */
+    width: 705px;
+    height: 405px;
+}
+#slider, #imgSlider{
+    width: 700px; /* hauteur du slide et des images */
+    height: 400px; /*largeur du slide et des images */
+}
+
+#flecheGauche{
+    top: 43%;
+    left: 1%;
+}
+#flecheDroite{
+    top : 43%;
+    right: 1%;
+}
+
+/*-----------------------------------------------------------------------------------------------------------
+            partie carte et cadre réservation
+-----------------------------------------------------------------------------------------------------------*/
+.ol-overlaycontainer-stopevent{ /*Pour le placement de la mention "© OpenStreetMap contributors." en bas a gauche de la map */
+top: 360px;
+}
+.ol-zoom, .ol-rotate, .ol-compass{ /* Effacement de l'affichage des éléments zoom, rotate et compass (tout ce fait avec la souris) */
+    display: none; 
+}
+
+.ol-attribution > button{
+    display: none;
+}
+.leaflet-popup{
+    font-size: 18px;
+}
+
