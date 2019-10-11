@@ -137,16 +137,23 @@
       $('#boutonreserver').hide(); // display : none; sur bouton réserver
       this.canvas.clear();
       $('#validationbouton').on('click',  () =>{
+
+
+        //Mis en place pour afficher un message si une réservation est déjà en cours pour éviter d'en faire une seconde 
+
+
+        let dejareservation = document.getElementById('texttimer'); 
+        if($(dejareservation).text() !== null){
+          $('#sireservation').html("erreur vous avez déjà une réservation merci de l'annulez avant de reprendre un nouveau vélo");
+        }else{
         let station = $('#reservation').text();
-        this.confirmation(station);
+        this.confirmation(station);}
       });
   });
   }
 
-  confirmation(textStation){
-    
-    //-------------Block timer réservation 
-    //-----------------------------------
+  confirmation(textStation){ //méthode pour lancer le timer start de l'objet start
+
     this.timer.start(textStation);
       
   }
@@ -157,7 +164,7 @@
   clearCanvas(){
     $('#effacercanvas').on('click', () =>{
       console.log("on rentre");
-      this.canvas.redraw();
+      this.canvas.clear();
 
     })
   }

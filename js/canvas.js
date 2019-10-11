@@ -75,7 +75,7 @@ class Canvas{
 		clearCanvas_simple(); 
 	});
       }*/
-      clear() {
+      clear(clickX, clickY, ){
         
         let ctx = this.canvas;
         ctx.clearRect(0, 0, canvas.width, canvas.height);

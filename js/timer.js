@@ -45,7 +45,7 @@ class Timer{
     stopTime(){ // pour arrêter le chrono
         $('#annulation').on("click", function(){
         clearInterval(intervalID);
-        $('#texttimer').hide();
+        $('#texttimer').text("La réservation est annulée");
         
     });
 
