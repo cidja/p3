@@ -45,6 +45,7 @@ class Timer{
     stopTime(){ // pour arrêter le chrono
         $('#annulation').on("click", function(){
         clearInterval(intervalID);
+        sessionStorage.removeItem("timer"); // Suppression du sessionStorage pour timer (donc quand clic sur annuler supprime session timer plus de temps allouer)
         $('#texttimer').text("La réservation est annulée");
         
     });

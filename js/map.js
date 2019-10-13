@@ -142,11 +142,11 @@
         //Mis en place pour afficher un message si une réservation est déjà en cours pour éviter d'en faire une seconde 
 
 
-        let dejareservation = document.getElementById('texttimer'); 
-        if($(dejareservation).text() !== null){
+        const dejareservation = $('#texttimer'); 
+        if(dejareservation !== undefined){
           $('#sireservation').html("erreur vous avez déjà une réservation merci de l'annulez avant de reprendre un nouveau vélo");
         }else{
-        let station = $('#reservation').text();
+        const station = $('#reservation').text();
         this.confirmation(station);}
       });
   });
