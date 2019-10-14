@@ -18,7 +18,7 @@ class Timer{
             sessionStorage.setItem("station", this.stationAddress);
             sessionStorage.setItem("timer", this.time);
             const{minutes, seconds} = this.getMinutesAndSeconds(this.time);
-            $('#texttimer').show();
+            $('#texttimer').show(2000);
             this.textTimer.innerHTML =
             `Vous avez bien réservé un vélo à <span>${this.stationAddress}<span> pour une durée de <span>${minutes}:${seconds}</span>`;
             this.updateTime();
@@ -46,7 +46,15 @@ class Timer{
         $('#annulation').on("click", function(){
         clearInterval(intervalID);
         sessionStorage.removeItem("timer"); // Suppression du sessionStorage pour timer (donc quand clic sur annuler supprime session timer plus de temps allouer)
-        $('#texttimer').text("La réservation est annulée");
+        $('#texttimer').hide(2000);
+        $('#texteannulation').show(); // Affiche  réservation annulée
+        setTimeout(function () {
+            $('#texteannulation').hide(1000); //cache test
+        },2000);
+        setTimeout( function() {
+            $('#infosReservation').hide(1000);
+        },3000)
+       
         
     });
 

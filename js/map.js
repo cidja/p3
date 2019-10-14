@@ -8,8 +8,10 @@
     this.canvas = new Canvas();
     this.timer = new Timer();
     this.timer.restartExistingTimer();
-    this.stockInfosNomPrenom();
     this.clearCanvas();
+    this.nom = document.getElementById('nom');
+    this.prenom = document.getElementById('prenom');
+    this.stockInfosNomPrenom();
   }
  
 /*------------------------------
@@ -111,59 +113,52 @@
             };
           }  //fin de for
     });
-  } //fin loadMarkers
+  } //fin loadMarkers()
 
+  
   //utilisé quand le client va fermer ou actualiser son navigateur les  infos restent
     stockInfosNomPrenom(){ //on stock le nom et prénom dans un localstorage pour qu'ils soient prérempli au rechargement
-      let nom = document.getElementById('nom');
-      let prenom = document.getElementById('prenom');
-      localStorage.setItem("nom", nom);
-      localStorage.setItem("prenom", prenom);
+      localStorage.setItem("nom", this.nom);
+      localStorage.setItem("prenom", this.prenom);
+      if(this.nom !== null){
+        this.nom = localStorage.getItem('nom');
+      }
+      if(this.prenom !== null){
+        this.prenom = localStorage.getItem('prenom');
+      }
+    } // Fin stockInfosNomPrenom()
+ 
+    effaceUtilisateur(){ //si rajout d'un bouton pour effacer les préremplissage nom prenom
+      localStorage.removeItem("nom");
+      localStorage.removeItem("prenom");
 
-      if(nom !== null){
-        nom = localStorage.getItem('nom');
-      }
-      if(prenom !== null){
-        prenom = localStorage.getItem('prenom');
-      }
-    }
+    } // Fin effaceUtilisateur()
 //----------------------------------------------------------------
 //        Bloc réservation de la station
 
   initRerservationListener(){
-    const boutonReserver = document.getElementById('boutonreserver');
-    boutonReserver.addEventListener('click',  () =>{
-      $('#formreservation').css('display', 'flex'); //affiche nom prenom canvas et bouton valider
-      $('#boutonreserver').hide(); // display : none; sur bouton réserver
-      this.canvas.clear();
-      $('#validationbouton').on('click',  () =>{
-
+        $('#validationbouton').on('click',  () =>{
+        $('#conteneurstation').hide(1500);
+        const station = $('#reservation').text();
+        $('#infosReservation').show(1000);
+        this.confirmation(station);
 
         //Mis en place pour afficher un message si une réservation est déjà en cours pour éviter d'en faire une seconde 
-
-
-        const dejareservation = $('#texttimer'); 
-        if(dejareservation !== undefined){
+        /*
+        if($('#texttimer').text() !== undefined){
           $('#sireservation').html("erreur vous avez déjà une réservation merci de l'annulez avant de reprendre un nouveau vélo");
         }else{
-        const station = $('#reservation').text();
-        this.confirmation(station);}
+        }*/
       });
-  });
-  }
+  } //fin initRerservationListener()
 
   confirmation(textStation){ //méthode pour lancer le timer start de l'objet start
-
     this.timer.start(textStation);
       
   }
 
- 
-   
-
   clearCanvas(){
     $('#effacercanvas').on('click', () =>{
-      console.log("on rentre");
       this.canvas.clear();
 
     })

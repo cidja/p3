@@ -38,8 +38,7 @@
      
         <!--Partie détails de la réservation qui apparait au clic sur une station dans la partie map-->
         <div id='conteneurstation' class="conteneurDetailStation  w50p borderTest dnone  flexdcol justify-center align-center"> 
-            <input type="button" id="boutonreserver" value="réserver">
-            <div id="formreservation" class="mt20px txtcenter dnone flexdcol">
+            <div id="formreservation" class="mt20px txtcenter flexdcol">
                 <div id=choixstation></div>
                 <form>
                     <label for="nom"><input type="text" name="nom" id="nom" placeholder="nom"></label>
@@ -56,9 +55,10 @@
     </div>
     
     <!--Partie infos réservation qui apparait quand le visiteur a réservé un vélo-->
-    <div class="infosReservation borderTest maxw1400px autolr w100p mt80px pad30px">
+    <div id="infosReservation" class="borderTest maxw1400px autolr w100p mt80px pad30px dnone">
         <div  id='texttimer'></div>
         <div  id='timer'></div>
+        <div id='texteannulation' class='dnone'>La réservation est annulée</div>
         <div id='sireservation'></div>
         <input id="annulation" type="button" value="annulez réservation"/>
     </div>
