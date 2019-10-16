@@ -81,7 +81,7 @@
               <br>
               Vélos disponible -> <strong>${velosDisponible}</strong>`);
               $(marker).on('click', function() {
-              $('#conteneurstation').css('display' , 'flex'); //jquery affiche le div conteneur station au click sur un marker 
+              $('#conteneurstation').show(1000); //jquery affiche le div conteneur station au click sur un marker 
               $('#choixstation').html("Station sélectionnée :  <span id=\"reservation\">" + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
               });
 
@@ -97,7 +97,7 @@
               <br>
               Vélos disponible -> <strong>${velosDisponible}</strong>`);
               $(marker).on('click', function(){
-              $('#conteneurstation').css('display' , 'flex'); //jquery affiche le div conteneur station au click sur un marker 
+              $('#conteneurstation').show(1000); //jquery affiche le div conteneur station au click sur un marker 
               $('#choixstation').html("Station sélectionnée : " + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
               });
             }
@@ -140,27 +140,24 @@
         $('#validationbouton').on('click',  () =>{
         $('#conteneurstation').hide(1500);
         const station = $('#reservation').text();
-        $('#infosReservation').show(1000);
-        this.confirmation(station);
-
-        //Mis en place pour afficher un message si une réservation est déjà en cours pour éviter d'en faire une seconde 
-        /*
-        if($('#texttimer').text() !== undefined){
-          $('#sireservation').html("erreur vous avez déjà une réservation merci de l'annulez avant de reprendre un nouveau vélo");
+        if($('#texttimer').text() !== "" && !$('#texttimer').text().startsWith("Votre réservation à la station")){
+          alert("erreur vous avez déjà une réservation merci de l'annulez avant de reprendre un nouveau vélo"); // Affiche message alert en pop-up
+          // $('#sireservation').html("erreur vous avez déjà une réservation merci de l'annulez avant de reprendre un nouveau vélo");
         }else{
-        }*/
+        $('#infosReservation').show(1000); //montre div infosReservationavec une animation sur 1000
+        this.confirmation(station);
+        }
+        
       });
   } //fin initRerservationListener()
 
   confirmation(textStation){ //méthode pour lancer le timer start de l'objet start
     this.timer.start(textStation);
-      
   }
 
   clearCanvas(){
     $('#effacercanvas').on('click', () =>{
       this.canvas.clear();
-
     })
   }
 

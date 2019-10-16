@@ -38,6 +38,10 @@ pour continuer dans le plus précis avec les class et les id */
 }
 /*-----Max-width en px---*/
 .maxw360px{max-width: 360px;}
+.maxw1000px{max-width: 1000px;}
+.maxw1100px{max-width: 1100px;}
+.maxw1200px{max-width: 1200px;}
+.maxw1300px{max-width: 1300px;}
 .maxw1400px{max-width: 1400px;} /*maximum en largeur de 1400px du conteneur */
 .maxw1500px{max-width: 1500px;}
 .maxw1600px{max-width: 1600px;}
@@ -80,7 +84,8 @@ pour continuer dans le plus précis avec les class et les id */
 
 /*-----flex-----*/
 .flex{display: flex;}
-.justify-flex-start{justify-content: flex-start;}/*justifié collé en haut */
+.justify-flex-start{justify-content: flex-start;}/*justifié collé au début (en haut si vertical, a gauche si horizontal) */
+.justify-flex-end{justify-content: flex-end;}/*justifié collé à la fin */
 .justify-between{justify-content: space-between;} /*mettre sur chaque côté */
 .justify-around{justify-content: space-around;} /* mettre sur chaque côtés avec des espaces */
 .justify-center{justify-content: center;} /*centrer au milieu */

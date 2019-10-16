@@ -9,8 +9,8 @@ class Timer{
 
     start(stationAddress) {
         this.stationAddress = stationAddress;
-        clearInterval(this.intervalID);
-        this.time = 1200;
+        clearInterval(intervalID);
+        this.time = 1200; // correspond à 20 minutes
         if(intervalID !== null){
             clearInterval(intervalID);
         }
@@ -20,10 +20,10 @@ class Timer{
             const{minutes, seconds} = this.getMinutesAndSeconds(this.time);
             $('#texttimer').show(2000);
             this.textTimer.innerHTML =
-            `Vous avez bien réservé un vélo à <span>${this.stationAddress}<span> pour une durée de <span>${minutes}:${seconds}</span>`;
+            `Vous avez bien réservé un vélo à <span>${this.stationAddress}<span> votre réservation expirera dans :  <span>${minutes}:${seconds}</span>`;
             this.updateTime();
             if (this.time === 0){
-                clearInterval(this.intervalID);
+                clearInterval(intervalID);
                 this.textTimer.innerHTML =
                 `Votre réservation à la station <span>${this.stationAddress}</span> a expirée !`;
                 sessionStorage.clear("station", "timer");
@@ -33,7 +33,7 @@ class Timer{
     }
     updateTime(){
         this.time = this.time -1; //on décrémente de 1 toutes les 1000 millisecondes (1sec)
-        sessionStorage.setItem("timer", this.time);
+        sessionStorage.setItem("timer", this.time); // on stock dans sessionStorage le timer
     }
 
     restartExistingTimer(){
@@ -46,13 +46,13 @@ class Timer{
         $('#annulation').on("click", function(){
         clearInterval(intervalID);
         sessionStorage.removeItem("timer"); // Suppression du sessionStorage pour timer (donc quand clic sur annuler supprime session timer plus de temps allouer)
-        $('#texttimer').hide(2000);
+        $('#texttimer').text(""); // réecriture de texttimer pour indiquer vide permet à la condition du bouton valider de fonctionner 
         $('#texteannulation').show(); // Affiche  réservation annulée
         setTimeout(function () {
             $('#texteannulation').hide(1000); //cache test
         },2000);
         setTimeout( function() {
-            $('#infosReservation').hide(1000);
+            $('#infosReservation').hide(1000); //Cache ensuite le div infosréservation
         },3000)
        
         

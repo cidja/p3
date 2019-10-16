@@ -15,47 +15,40 @@
     <div class='titre1Conteneur txtcenter'>
         <h1 class='titre1'>Bienvenue sur la page de réservation de location de vélo</h1>
     </div>
-    <div class='blocSlider autolr maxw1400px borderTest flex plus'>
-        <div id="slider" class='prelative plus'>
-            <img id='imgSlider' src='img/1.png'>
-            
-                <div id='flecheGauche' class='pabsolute plus'>
-                    <i class="far fa-arrow-alt-circle-left"></i>
-                </div>
-                <div id='flecheDroite' class='pabsolute'>
-                    <i class="far fa-arrow-alt-circle-right"></i>
-                </div>
-            
-        </div>
-    </div>
+    <section id="slide">
+            <img src='img/1.png' id="diap1" alt="slider">
+            <div id="action">
+                <i id="prev" class="fas fa-chevron-left"></i> <!-- Prev icon -->
+                <i id="next" class="fas fa-chevron-right"></i> <!-- Next icon -->
+            </div>    
+            </div>
+    </section>
 
     <!--Conteneur pour la map et la partie détails réservation-->
-    <div class="conteneurMapReservation maxw90p autolr w100p mt80px pad30px  flex ">
+    <div class="conteneurMapReservation maxw1400px autolr mt80px flex justify-flex-end">
         <!--Partie map-->
-        <div id="map" class="map h600px w80p ">
+        <div id="map" class="map h600px w100p +">
 
         </div>
-     
+        
         <!--Partie détails de la réservation qui apparait au clic sur une station dans la partie map-->
-        <div id='conteneurstation' class="conteneurDetailStation  w50p borderTest dnone  flexdcol justify-center align-center"> 
+        <div id='conteneurstation' class="conteneurDetailStation  w35p borderTest dnone flexdcol justify-center align-center +"> 
             <div id="formreservation" class="mt20px txtcenter flexdcol">
                 <div id=choixstation></div>
-                <form>
-                    <label for="nom"><input type="text" name="nom" id="nom" placeholder="nom"></label>
-                    <br/>
-                    <label for="prenom"><input type="text" name="prenom" id="prenom" placeholder="prénom"></label>
-                    <br/>
-                </form>
+                <label for="nom"><input type="text" name="nom" id="nom" placeholder="nom"></label>
+                <br/>
+                <label for="prenom"><input type="text" name="prenom" id="prenom" placeholder="prénom"></label>
+                <br/>
                 <canvas id='canvas' class='borderTest'></canvas>
                 <input id='effacercanvas' type='button' value='effacer la signature'/>
                 <input id='validationbouton' type='button' value='valider'/>
             </div>
-
+            
         </div>
     </div>
     
     <!--Partie infos réservation qui apparait quand le visiteur a réservé un vélo-->
-    <div id="infosReservation" class="borderTest maxw1400px autolr w100p mt80px pad30px dnone">
+    <div id="infosReservation" class="borderTest maxw1400px autolr w100p mt10px pad30px dnone">
         <div  id='texttimer'></div>
         <div  id='timer'></div>
         <div id='texteannulation' class='dnone'>La réservation est annulée</div>
