@@ -1,7 +1,7 @@
 /*Pour Inserer la police d'écriture google si besoin
     font-family: 'Nunito', sans-serif;
 */
-
+*,*::before, *::after {box-sizing: border-box;} /* */
 *{
     font-family: 'Nunito', sans-serif, "Arial"; /*Définition de la police d'écriture pour tous le document */
 }
@@ -36,14 +36,34 @@
 /*-----------------------------------------------------------------------------------------------------------
             partie carte et cadre réservation
 -----------------------------------------------------------------------------------------------------------*/
-
+#map{
+    width: 59%;
+}
 #conteneurstation{
-
     background-color: rgba(186, 223, 219, 0.8);
+    width: 39%;
 }
 #canvas{
     background-color: white;
+    margin-top: 10px;
+    width: 80%;
+    border-radius: 10px;
 }
+#effacercanvas{
+    background-color: #FF3300; /* fond de couleur rouge pour le bouton effacer canvas */
+    border-radius: 10px; /*mis bords arrondis */
+    border: 0px; /*suppression de la bordure */
+    font-size: 20px; /*20px de size*/
+    padding: 10px 20px; /*pour grossir le bouton et l'aérer */
+}
+#validationbouton{
+    background-color: #33CC00; /* fond de couleur rouge pour le bouton effacer canvas */
+    border-radius: 10px; /*mis bords arrondis */
+    border: 0px; /*suppression de la bordure */
+    font-size: 20px; /*20px de size*/
+    padding: 10px 20px; /*pour grossir le bouton et l'aérer */
+}
+
 .ol-overlaycontainer-stopevent{ /*Pour le placement de la mention "© OpenStreetMap contributors." en bas a gauche de la map */
 top: 360px;
 }

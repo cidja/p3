@@ -25,30 +25,32 @@
     </section>
 
     <!--Conteneur pour la map et la partie détails réservation-->
-    <div class="conteneurMapReservation maxw1400px autolr mt80px flex justify-flex-end">
+    <div class="conteneurMapReservation maxw1400px autolr mt80px flex justify-between">
         <!--Partie map-->
-        <div id="map" class="map h600px w100p +">
+        <div id="map" class="map h600px  +">
 
         </div>
         
         <!--Partie détails de la réservation qui apparait au clic sur une station dans la partie map-->
-        <div id='conteneurstation' class="conteneurDetailStation  w35p borderTest dnone flexdcol justify-center align-center +"> 
-            <div id="formreservation" class="mt20px txtcenter flexdcol">
+        <div id='conteneurstation' class="conteneurDetailStation h600px borderTest flexdcol justify-center align-center +"> 
+            <div id="formreservation" class="h600px flex flexdcol align-center justify-center">
                 <div id=choixstation></div>
-                <label for="nom"><input type="text" name="nom" id="nom" placeholder="nom"></label>
+                <label for="nom" class="txtcenter">Nom  <br/> <input type="text" name="nom" id="nom" class="txtcenter borderradius10px mb20px" placeholder="nom" required></label>
                 <br/>
-                <label for="prenom"><input type="text" name="prenom" id="prenom" placeholder="prénom"></label>
+                <label for="prenom" class="txtcenter">Prénom  <br/> <input type="text" name="prenom" id="prenom" class="txtcenter borderradius10px" placeholder="prénom" required></label>
                 <br/>
                 <canvas id='canvas' class='borderTest'></canvas>
-                <input id='effacercanvas' type='button' value='effacer la signature'/>
-                <input id='validationbouton' type='button' value='valider'/>
+                <div id="conteneurboutons" class="w80p mt20px flex justify-between">
+                    <input id='effacercanvas' type='button' value='effacer la signature'/>
+                    <input id='validationbouton' type='button' value='valider'/>
+                </div>
             </div>
             
         </div>
     </div>
     
     <!--Partie infos réservation qui apparait quand le visiteur a réservé un vélo-->
-    <div id="infosReservation" class="borderTest maxw1400px autolr w100p mt10px pad30px dnone">
+    <div id="infosReservation" class="borderTest maxw1400px autolr w100p mt10px pad30px">
         <div  id='texttimer'></div>
         <div  id='timer'></div>
         <div id='texteannulation' class='dnone'>La réservation est annulée</div>

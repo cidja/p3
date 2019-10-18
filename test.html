@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    Nom : <input type='text' id='field'/>
+    
+
+    <script>
+    class Save{
+        constructor(){
+            this.stock();
+        }
+        
+    stock(){
+        let field = document.getElementById("field");
+ 
+ // See if we have an autosave value
+ // (this will only happen if the page is accidentally refreshed)
+ if (localStorage.getItem("autosave")) {
+   // Restore the contents of the text field
+   field.value = localStorage.getItem("autosave");
+ }
+  
+ // Listen for changes in the text field
+ field.addEventListener("change", function() {
+   // And save the results into the session storage object
+   localStorage.setItem("autosave", field.value);
+ });
+
+    }
+    }
+    // Get the text field that we're going to track
+new Save();
+
+    </script>
+</body>
+</html>

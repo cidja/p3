@@ -4,14 +4,13 @@
     this.map;
     this.initMap();
     this.loadMarkers(this.map);
-    this.initRerservationListener();
     this.canvas = new Canvas();
     this.timer = new Timer();
     this.timer.restartExistingTimer();
     this.clearCanvas();
-    this.nom = document.getElementById('nom');
-    this.prenom = document.getElementById('prenom');
-    this.stockInfosNomPrenom();
+    this.stockNomPrenom();
+    this.initRerservationListener();
+    
   }
  
 /*------------------------------
@@ -20,7 +19,7 @@
 //Source: https://nouvelle-techno.fr/actualites/2018/05/11/pas-a-pas-inserer-une-carte-openstreetmap-sur-votre-site 
 //Source : https://leafletjs.com/
   initMap(){ 
-    this.map = L.map('map').setView([48.69, 6.18], 14);
+    this.map = L.map('map').setView([48.69, 6.18], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
@@ -35,7 +34,7 @@
     ajaxGet(jcdecauxApi, function (reponse){
       let contrats = JSON.parse(reponse);
       //Affichage de chaque markers
-      console.log(contrats);
+     // console.table(contrats);
 
       //Création des icones de couleur 
       let LeafIcon = L.Icon.extend({
@@ -81,7 +80,7 @@
               <br>
               Vélos disponible -> <strong>${velosDisponible}</strong>`);
               $(marker).on('click', function() {
-              $('#conteneurstation').show(1000); //jquery affiche le div conteneur station au click sur un marker 
+              
               $('#choixstation').html("Station sélectionnée :  <span id=\"reservation\">" + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
               });
 
@@ -97,7 +96,7 @@
               <br>
               Vélos disponible -> <strong>${velosDisponible}</strong>`);
               $(marker).on('click', function(){
-              $('#conteneurstation').show(1000); //jquery affiche le div conteneur station au click sur un marker 
+              
               $('#choixstation').html("Station sélectionnée : " + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
               });
             }
@@ -117,41 +116,52 @@
 
   
   //utilisé quand le client va fermer ou actualiser son navigateur les  infos restent
-    stockInfosNomPrenom(){ //on stock le nom et prénom dans un localstorage pour qu'ils soient prérempli au rechargement
-      localStorage.setItem("nom", this.nom);
-      localStorage.setItem("prenom", this.prenom);
-      if(this.nom !== null){
-        this.nom = localStorage.getItem('nom');
-      }
-      if(this.prenom !== null){
-        this.prenom = localStorage.getItem('prenom');
-      }
-    } // Fin stockInfosNomPrenom()
+  stockNomPrenom(){ //on stock le nom et prénom dans un sessionStorage pour qu'ils soient prérempli au rechargement
+    let nom = document.getElementById('nom');
+    let prenom = document.getElementById('prenom');
+    if (sessionStorage.getItem('autosavenom')){
+      //restauration du contenu du champ
+      nom.value = sessionStorage.getItem('autosavenom');
+      console.log("on rentre dans autosavenom");
+    }
+    nom.addEventListener("change", function() {
+      sessionStorage.setItem('autosavenom', nom.value);
+    });
+    if(sessionStorage.getItem('autosaveprenom')){
+      prenom.value = sessionStorage.getItem('autosaveprenom');
+      console.log("on rentre dans autosaveprenom");
+    }
+    prenom.addEventListener("change", function() {
+      sessionStorage.setItem('autosaveprenom', prenom.value);
+    });
+   
+      }// Fin stockInfosNomPrenom()
  
-    effaceUtilisateur(){ //si rajout d'un bouton pour effacer les préremplissage nom prenom
-      localStorage.removeItem("nom");
-      localStorage.removeItem("prenom");
+    /*effaceUtilisateur(){ //si rajout d'un bouton pour effacer les préremplissage nom prenom
+      sessionStorage.removeItem("nom");
+      sessionStorage.removeItem("prenom");
 
-    } // Fin effaceUtilisateur()
+    } // Fin effaceUtilisateur()*/
 //----------------------------------------------------------------
 //        Bloc réservation de la station
 
   initRerservationListener(){
-        $('#validationbouton').on('click',  () =>{
-        $('#conteneurstation').hide(1500);
+        $('#validationbouton').on('click',  () =>{ //conditions pour pouvoir lancer la réservation
         const station = $('#reservation').text();
-        if($('#texttimer').text() !== "" && !$('#texttimer').text().startsWith("Votre réservation à la station")){
+        if((document.getElementById('nom').value === "") || (document.getElementById('prenom').value === "")){ // si Nom et Prénom pas rempli on ne lance pas fonction confirmation
+          alert("Merci de rentrer le nom et le prénom");
+        } 
+        else if($('#texttimer').text() !== "" && !$('#texttimer').text().startsWith("Votre réservation à la station")){ //Vérifie si texttimer écrit ou si écrit Votre réservation à la sation... est écrit on affiche alert
           alert("erreur vous avez déjà une réservation merci de l'annulez avant de reprendre un nouveau vélo"); // Affiche message alert en pop-up
-          // $('#sireservation').html("erreur vous avez déjà une réservation merci de l'annulez avant de reprendre un nouveau vélo");
-        }else{
-        $('#infosReservation').show(1000); //montre div infosReservationavec une animation sur 1000
+        }
+        else{
         this.confirmation(station);
         }
         
       });
   } //fin initRerservationListener()
 
-  confirmation(textStation){ //méthode pour lancer le timer start de l'objet start
+  confirmation(textStation){ //méthode pour lancer le timer start de l'objet Timer
     this.timer.start(textStation);
   }
 

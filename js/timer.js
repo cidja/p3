@@ -4,13 +4,18 @@ class Timer{
         this.textTimer = document.getElementById('texttimer');
         this.sectionTimer = document.getElementById('timer');
         this.restartExistingTimer();
+        this.canvas = new Canvas();
+        //this.clearCanvas();
         
     }
 
     start(stationAddress) {
         this.stationAddress = stationAddress;
         clearInterval(intervalID);
-        this.time = 1200; // correspond à 20 minutes
+        if(sessionStorage.getItem("timer") == undefined){ //fonction qui va vérifier si temps déja défini si non règle le temps à 1200 sec (20 minutes)
+            sessionStorage.setItem('timer', 1200);
+        }
+        this.time = sessionStorage.getItem("timer");
         if(intervalID !== null){
             clearInterval(intervalID);
         }
@@ -18,7 +23,6 @@ class Timer{
             sessionStorage.setItem("station", this.stationAddress);
             sessionStorage.setItem("timer", this.time);
             const{minutes, seconds} = this.getMinutesAndSeconds(this.time);
-            $('#texttimer').show(2000);
             this.textTimer.innerHTML =
             `Vous avez bien réservé un vélo à <span>${this.stationAddress}<span> votre réservation expirera dans :  <span>${minutes}:${seconds}</span>`;
             this.updateTime();
@@ -26,7 +30,7 @@ class Timer{
                 clearInterval(intervalID);
                 this.textTimer.innerHTML =
                 `Votre réservation à la station <span>${this.stationAddress}</span> a expirée !`;
-                sessionStorage.clear("station", "timer");
+                sessionStorage.removeItem("station", "timer");
             }
         }, 1000)
         document.getElementById('annulation').addEventListener('click', this.stopTime());
@@ -45,17 +49,13 @@ class Timer{
     stopTime(){ // pour arrêter le chrono
         $('#annulation').on("click", function(){
         clearInterval(intervalID);
+        //this.canvas.clear();
         sessionStorage.removeItem("timer"); // Suppression du sessionStorage pour timer (donc quand clic sur annuler supprime session timer plus de temps allouer)
         $('#texttimer').text(""); // réecriture de texttimer pour indiquer vide permet à la condition du bouton valider de fonctionner 
         $('#texteannulation').show(); // Affiche  réservation annulée
         setTimeout(function () {
             $('#texteannulation').hide(1000); //cache test
-        },2000);
-        setTimeout( function() {
-            $('#infosReservation').hide(1000); //Cache ensuite le div infosréservation
-        },3000)
-       
-        
+        },2000);       
     });
 
     }
