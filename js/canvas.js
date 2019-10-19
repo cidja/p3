@@ -27,6 +27,18 @@ class Canvas{
       self.draw = false;
     })
   }
+  effacer(){//Effacer
+    self = this;
+  self.clearButton.addEventListener("click", function(e) {
+    self.clearCanvas()
+  });
+}
+  getMposition(mouseEvent){
+    self = this;
+    if(self.draw){
+      
+    }
+  }
 }
 
 
