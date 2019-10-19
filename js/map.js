@@ -137,11 +137,6 @@
    
       }// Fin stockInfosNomPrenom()
  
-    /*effaceUtilisateur(){ //si rajout d'un bouton pour effacer les préremplissage nom prenom
-      sessionStorage.removeItem("nom");
-      sessionStorage.removeItem("prenom");
-
-    } // Fin effaceUtilisateur()*/
 //----------------------------------------------------------------
 //        Bloc réservation de la station
 
