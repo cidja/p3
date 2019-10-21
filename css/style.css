@@ -46,7 +46,6 @@
 #canvas{
     background-color: white;
     margin-top: 10px;
-    width: 80%;
     border-radius: 10px;
 }
 #effacercanvas{
@@ -78,3 +77,18 @@ top: 360px;
     font-size: 18px;
 }
 
+/*--------------------------------------------------------------------------------
+        Partie timer et annulation
+--------------------------------------------------------------------------------*/
+.infosimportantes{ /*rassemble la station sélectionnée et le compte à rebours dans la partie timer */
+    color: red;
+}
+
+#annulation{
+    padding: 15px;
+    border-radius: 15px;
+    border: 0px;
+    background-color: darkorange;
+    color: white;
+    font-size: 20px;
+}

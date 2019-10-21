@@ -24,7 +24,7 @@ class Timer{
             sessionStorage.setItem("timer", this.time);
             const{minutes, seconds} = this.getMinutesAndSeconds(this.time);
             this.textTimer.innerHTML =
-            `Vous avez bien réservé un vélo à <span>${this.stationAddress}<span> votre réservation expirera dans :  <span>${minutes}:${seconds}</span>`;
+            `Vous avez bien réservé un vélo à <span class="infosimportantes">${this.stationAddress}<span> votre réservation expirera dans :  <span class="infosimportantes">${minutes}:${seconds}</span>`;
             this.updateTime();
             if (this.time === 0){
                 clearInterval(intervalID);

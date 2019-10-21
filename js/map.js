@@ -122,14 +122,12 @@
     if (sessionStorage.getItem('autosavenom')){
       //restauration du contenu du champ
       nom.value = sessionStorage.getItem('autosavenom');
-      console.log("on rentre dans autosavenom");
     }
     nom.addEventListener("change", function() {
       sessionStorage.setItem('autosavenom', nom.value);
     });
     if(sessionStorage.getItem('autosaveprenom')){
       prenom.value = sessionStorage.getItem('autosaveprenom');
-      console.log("on rentre dans autosaveprenom");
     }
     prenom.addEventListener("change", function() {
       sessionStorage.setItem('autosaveprenom', prenom.value);
