@@ -1,38 +1,54 @@
 /*Pour Inserer la police d'écriture google si besoin
     font-family: 'Nunito', sans-serif;
 */
+
+
+/*Source couleurs: https://colorhunt.co/palette/124155 */
+
 *,*::before, *::after {box-sizing: border-box;} /* */
 *{
-    font-family: 'Nunito', sans-serif, "Arial"; /*Définition de la police d'écriture pour tous le document */
+    font-family: 'Courgette', sans-serif, "Arial"; /*Définition de la police d'écriture pour tous le document */
+}
+
+
+body{
+    background-color: #5eb7b7;
 }
 /*-----------------------------------------------------------------------------------------------------------
             Partie slider 
 -----------------------------------------------------------------------------------------------------------*/
 #slide{
-    margin: 0px;
-    padding: 0px;
+   /* margin: 0px;
+    padding: 0px;*/
 }
 #diap1{
     width: 100%;
-    height: 100vh;
+    height: 70vh;
+    border-radius: 15px; /*POur arrondir les bords */
 }
-#prev {
-  position: absolute;
-  top: 50%;
+#action{
+    display: flex;
+    justify-content: center;
+}
+#prev, #next, #pause, #play {
+  /*position: absolute;
+  top: 40%;
   float: left;
-  left: 2%;
+  left: 25%;*/
   font-size: 3em;
-  color: whitesmoke;
+  color: grey;
 }
 
+/*
 #next {
   position: absolute;
-  top: 50%;
+  top: 40%;
   float: right;
-  right: 2%;
+  right: 25%;
   font-size: 3em;
-  color: whitesmoke;
-}
+  color: black;
+}*/
+
 /*-----------------------------------------------------------------------------------------------------------
             partie carte et cadre réservation
 -----------------------------------------------------------------------------------------------------------*/
@@ -40,7 +56,7 @@
     width: 59%;
 }
 #conteneurstation{
-    background-color: rgba(186, 223, 219, 0.8);
+    background-color: #1687a7;
     width: 39%;
 }
 #canvas{
@@ -80,6 +96,9 @@ top: 360px;
 /*--------------------------------------------------------------------------------
         Partie timer et annulation
 --------------------------------------------------------------------------------*/
+#infosReservation{
+    background-color: #1687a7;
+}
 .infosimportantes{ /*rassemble la station sélectionnée et le compte à rebours dans la partie timer */
     color: red;
 }
@@ -92,3 +111,59 @@ top: 360px;
     color: white;
     font-size: 20px;
 }
+
+
+
+
+/*--------------------------------------------------
+        Partie responsive
+--------------------------------------------------*/
+
+/*Partie tablette*/
+
+@media only screen and (max-width: 1024px){
+    .conteneurMapReservation {
+        display: block;
+    }
+    #map{
+        width: 70%;
+        height: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+    }
+    #conteneurstation, #formreservation{
+        width: 70%;
+        height: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+ }
+
+ /* Partie Smartphone */
+ @media only screen and (max-width: 480px) {
+     .conteneurMapReservation{
+         margin-top: 10px;
+     }
+     #map{
+         width: 90%;
+         height: 250px;
+     }
+     .leaflet-popup{
+        font-size: 10px;
+    }
+    
+     #conteneurstation, #formreservation{
+         width: 98%;
+     }
+     #choixstation{
+         font-size: 15px;
+     }
+     #effacercanvas{
+        padding: 5px 10px; /*pour grossir le bouton et l'aérer */
+    }
+    #validationbouton{
+        padding: 5px 10px; /*pour grossir le bouton et l'aérer */
+    }
+ }

@@ -6,64 +6,66 @@
         <link rel='stylesheet' href='css/main.css' /> <!--Inclusion du fihicer main.css pour les classes générique-->
         <link rel='stylesheet' href='css/style.css' /> <!--Inclusion du fichier style.css pour les règles css spécifiques-->
         <link rel='stylesheet' href='fonts/css/all.css' /> <!--pour la police font awesome source: https://fontawesome.com/how-to-use/on-the-web/setup/hosting-font-awesome-yourself-->
-        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> <!--Inclusion de la police google  police Nunito!-->
+        <link href="https://fonts.googleapis.com/css?family=Courgette|Lobster|Nunito&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" /> <!--POur gérer la carte CDN-->
         <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script> <!--Inlusion fichiers pour maps leaflet-->
-       <script src='js/jquery.js'></script> <!--Inclusion du cdn jquery-->
+        <script
+			  src="https://code.jquery.com/jquery-3.4.1.min.js"
+			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			  crossorigin="anonymous"></script> <!--Inclusion du cdn jquery min-->
+		
     </head>
     <body>
-    <div class='titre1Conteneur txtcenter'>
-        <h1 class='titre1'>Bienvenue sur la page de réservation de location de vélo</h1>
-    </div>
-    <section id="slide">
+        <div class='titre1Conteneur txtcenter'>
+            <h1 class='titre1'>Bienvenue a Nancy avec les vélOstan'lib vélo en libre service</h1>
+        </div>
+        <section id="slide" class="maxw1000px autolr">
             <img src='img/1.png' id="diap1" alt="slider">
             <div id="action">
-                <i id="prev" class="fas fa-chevron-left"></i> <!-- Prev icon -->
-                <i id="next" class="fas fa-chevron-right"></i> <!-- Next icon -->
+                <i id="prev" class="fas fa-arrow-circle-left"></i> <!-- Prev icon -->
+                <i id="pause" class="fas fa-pause-circle"></i> <!-- Pause icon-->
+                <i id="next" class="fas fa-arrow-circle-right"></i> <!-- Next icon -->
             </div>    
-            </div>
-    </section>
+        </section>
 
-    <!--Conteneur pour la map et la partie détails réservation-->
-    <div class="conteneurMapReservation maxw1400px autolr mt80px flex justify-between">
-        <!--Partie map-->
-        <div id="map" class="map h600px  +">
-
-        </div>
-        
-        <!--Partie détails de la réservation qui apparait au clic sur une station dans la partie map-->
-        <div id='conteneurstation' class="conteneurDetailStation h600px borderTest flexdcol justify-center align-center +"> 
-            <div id="formreservation" class="h600px flex flexdcol align-center justify-center">
-                <div id=choixstation></div>
-                <label for="nom" class="txtcenter">Nom  <br/> <input type="text" name="nom" id="nom" class="txtcenter borderradius10px mb20px" placeholder="nom" required></label>
-                <br/>
-                <label for="prenom" class="txtcenter">Prénom  <br/> <input type="text" name="prenom" id="prenom" class="txtcenter borderradius10px" placeholder="prénom" required></label>
-                <br/>
-                <canvas id='canvas' class='borderTest'></canvas>
-                <div id="conteneurboutons" class="w80p mt20px flex justify-between">
-                    <input id='effacercanvas' type='button' value='effacer la signature'/>
-                    <input id='validationbouton' type='button' value='valider'/>
-                </div>
+        <!--Conteneur pour la map et la partie détails réservation-->
+        <div class="conteneurMapReservation maxw1400px autolr mt80px flex justify-between">
+            <!--Partie map-->
+            <div id="map" class="map h600px  +">
             </div>
             
+            <!--Partie détails de la réservation qui apparait au clic sur une station dans la partie map-->
+            <div id='conteneurstation' class="conteneurDetailStation h600px borderrad50px flexdcol justify-center align-center +"> 
+                <div id="formreservation" class="h600px flex flexdcol align-center justify-center">
+                    <div id=choixstation></div>
+                    <label for="nom" class="txtcenter">Nom  <br/> <input type="text" name="nom" id="nom" class="txtcenter borderradius10px mb20px" placeholder="nom" required></label>
+                    <br/>
+                    <label for="prenom" class="txtcenter">Prénom  <br/> <input type="text" name="prenom" id="prenom" class="txtcenter borderradius10px" placeholder="prénom" required></label>
+                    <br/>
+                    <canvas id='canvas' class='borderTest'></canvas>
+                    <div id="conteneurboutons" class="w80p mt20px flex justify-between">
+                        <input id='effacercanvas' type='button' value='effacer la signature'/>
+                        <input id='validationbouton' type='button' value='valider'/>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    
-    <!--Partie infos réservation qui apparait quand le visiteur a réservé un vélo-->
-    <div id="infosReservation" class="borderTest maxw1400px autolr txtcenter w100p mt10px pad30px">
-        <div  id='texttimer' class="fs25px"></div>
-        <div  id='timer'></div>
-        <div id='texteannulation' class='dnone'>La réservation est annulée</div>
-        <input id="annulation" type="button" value="annulez réservation"/>
-    </div>
-
-    <!--Inclusion des scripts js-->
-        <script src='js/ajax.js'></script> <!--Inclusion des requêtes Ajax-->
-        <script src='js/slider.js'></script>
-        <script src='js/canvas.js'></script>
-        <script src='js/timer.js'></script>
-        <script src='js/map.js'></script> <!--Inclusion du js pour la map (source: https://openlayers.org/en/latest/doc/quickstart.html-->
         
-      
+        <!--Partie infos réservation qui apparait quand le visiteur a réservé un vélo-->
+        <div id="infosReservation" class="maxw1400px autolr txtcenter w100p mt10px pad30px borderrad50px">
+            <div  id='texttimer' class="fs25px"></div>
+            <div  id='timer'></div>
+            <div id='texteannulation' class='dnone'>La réservation est annulée</div>
+            <input id="annulation" type="button" value="annuler réservation"/>
+        </div>
+
+        <!--Inclusion des scripts js-->
+            <script src='js/ajax.js'></script> <!--Inclusion des requêtes Ajax-->
+            <script src='js/slider.js'></script>
+            <script src='js/canvas.js'></script>
+            <script src='js/timer.js'></script>
+            <script src='js/map.js'></script> <!--Inclusion du js pour la map (source: https://openlayers.org/en/latest/doc/quickstart.html-->
+            
+        
     </body>
 </html>

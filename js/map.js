@@ -1,11 +1,11 @@
 //$(document).ready(function(){ charge le script quand la page est chargée
   class Map{
   constructor() {
+    this.timer = new Timer();
     this.map;
     this.initMap();
     this.loadMarkers(this.map);
     this.canvas = new Canvas();
-    this.timer = new Timer();
     this.timer.restartExistingTimer();
     this.clearCanvas();
     this.stockNomPrenom();
@@ -81,7 +81,7 @@
               Vélos disponible -> <strong>${velosDisponible}</strong>`);
               $(marker).on('click', function() {
               
-              $('#choixstation').html("Station sélectionnée :  <span id=\"reservation\">" + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
+              $('#choixstation').html("Station sélectionnée :<br/>  <span id=\"reservation\">" + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
               });
 
             } 
@@ -97,7 +97,7 @@
               Vélos disponible -> <strong>${velosDisponible}</strong>`);
               $(marker).on('click', function(){
               
-              $('#choixstation').html("Station sélectionnée : " + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
+              $('#choixstation').html("Station sélectionnée :<br/>" + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
               });
             }
             
@@ -116,21 +116,21 @@
 
   
   //utilisé quand le client va fermer ou actualiser son navigateur les  infos restent
-  stockNomPrenom(){ //on stock le nom et prénom dans un sessionStorage pour qu'ils soient prérempli au rechargement
+  stockNomPrenom(){ //on stock le nom et prénom dans un localStorage pour qu'ils soient prérempli au rechargement
     let nom = document.getElementById('nom');
     let prenom = document.getElementById('prenom');
-    if (sessionStorage.getItem('autosavenom')){
+    if (localStorage.getItem('autosavenom')){
       //restauration du contenu du champ
-      nom.value = sessionStorage.getItem('autosavenom');
+      nom.value = localStorage.getItem('autosavenom');
     }
     nom.addEventListener("change", function() {
-      sessionStorage.setItem('autosavenom', nom.value);
+      localStorage.setItem('autosavenom', nom.value);
     });
-    if(sessionStorage.getItem('autosaveprenom')){
-      prenom.value = sessionStorage.getItem('autosaveprenom');
+    if(localStorage.getItem('autosaveprenom')){
+      prenom.value = localStorage.getItem('autosaveprenom');
     }
     prenom.addEventListener("change", function() {
-      sessionStorage.setItem('autosaveprenom', prenom.value);
+      localStorage.setItem('autosaveprenom', prenom.value);
     });
    
       }// Fin stockInfosNomPrenom()
