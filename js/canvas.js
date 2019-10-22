@@ -16,51 +16,49 @@ class Canvas{
 
   eventListener(){
     //Souris
-     let self= this;
-    
+    let self= this;
     this.canvas.addEventListener("mousedown", function(e){
       self.draw = true;
       self.lastPosition = self.getMposition(e);
-    })
+    });
 
     this.canvas.addEventListener("mousemove",  function(e){
       self.mousePosition = self.getMposition(e);
       self.canvasResult();
-    })
-    //document.getElementById("canvas").addEventListener("mouseup", (e) =>{
-    //  this.draw = false;
-    //})
+    });
+    
+    //quand le clic de la souris est relevé on ne "dessine plus" n'importe où sur le document
     document.addEventListener("mouseup", function (e){
       self.draw = false;
-    })
+    });
 
  //Effacer    
     document.getElementById("effacercanvas").addEventListener("click", function(e){
     self.clearCanvas()
-  });
-  }
+    });
+  } // Fin eventListener()
+
   //renvoi les coordonnées de la souris
   getMposition(mouseEvent){
-   
     if(this.draw){
       let oRect = document.getElementById("canvas").getBoundingClientRect();
       return{
         x: mouseEvent.clientX - oRect.left,
         y: mouseEvent.clientY - oRect.top
       };
-      }
-  }
+    }
+  } //fin getMposition
+
   // Dessin du canvas
   canvasResult(){
-   
     if (this.draw) {
-            this.ctx.beginPath();
-            this.ctx.moveTo(this.lastPosition.x, this.lastPosition.y);
-            this.ctx.lineTo(this.mousePosition.x, this.mousePosition.y);
-            this.ctx.stroke();
-            this.lastPosition = this.mousePosition;
-        }
-  }
+      this.ctx.beginPath();
+      this.ctx.moveTo(this.lastPosition.x, this.lastPosition.y);
+      this.ctx.lineTo(this.mousePosition.x, this.mousePosition.y);
+      this.ctx.stroke();
+      this.lastPosition = this.mousePosition;
+      }
+    } // fin canvasResult()
   // Vide le dessin du canvas
   clearCanvas(){
       this.canvas.width = this.canvas.width;

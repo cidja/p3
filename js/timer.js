@@ -5,8 +5,6 @@ class Timer{
         this.sectionTimer = document.getElementById('timer');
         this.restartExistingTimer();
         this.canvas = new Canvas();
-        //this.clearCanvas();
-        
     }
 
     start(stationAddress) {
@@ -32,7 +30,7 @@ class Timer{
                 `Votre réservation à la station <span>${this.stationAddress}</span> a expirée !`;
                 sessionStorage.removeItem("station", "timer");
             }
-        }, 1000)
+        }, 1000) //appelé toutes les secondes
         document.getElementById('annulation').addEventListener('click', this.stopTime());
     }
     updateTime(){

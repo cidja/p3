@@ -10,7 +10,6 @@
     this.clearCanvas();
     this.stockNomPrenom();
     this.initRerservationListener();
-    
   }
  
 /*------------------------------
@@ -23,29 +22,24 @@
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
-    
   } //fin initMap
 
 /*----------------------------------
- Initialisation de l'api
+ Initialisation de la map
 ----------------------------------*/
   loadMarkers(map) {
     let jcdecauxApi = 'https://api.jcdecaux.com/vls/v1/stations?contract=nancy&apiKey=87166a79118dbedb3a843f9471b4c86be316f142';
     ajaxGet(jcdecauxApi, function (reponse){
       let contrats = JSON.parse(reponse);
-      //Affichage de chaque markers
-     // console.table(contrats);
-
-      //Création des icones de couleur 
+     //Création des icones de couleur 
       let LeafIcon = L.Icon.extend({
         options: {
-          iconSize: [40, 50],
+        iconSize: [40, 50],
         iconAnchor: [0, 50],
         popupAnchor: [21, -45]
         }
-      })
+      });
 
-      
       const greenIcon = new LeafIcon({iconUrl: 'img/veloVert.png'}) 
 
       const orangeIcon = new LeafIcon({iconUrl : 'img/veloOrange.png'});
@@ -83,8 +77,7 @@
               
               $('#choixstation').html("Station sélectionnée :<br/>  <span id=\"reservation\">" + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
               });
-
-            } 
+            }
             else if((velosDisponible <= 3) & (velosDisponible > 0)) { //Sinon on affiche icon orange 
               let marker = L.marker([coordsLat, coordsLong], {icon : orangeIcon}).addTo(map);
               marker.bindPopup(`
@@ -100,7 +93,6 @@
               $('#choixstation').html("Station sélectionnée :<br/>" + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
               });
             }
-            
             else if(velosDisponible = 0) { //Si aucun vélo disponible affiche image orange barrée
               let marker = L.marker([coordsLat, coordsLong], {icon : orangeIconBarree}).addTo(map);
               marker.bindPopup('Désolé plus aucun vélos disponible actuellement sur cette station');
@@ -111,12 +103,12 @@
             marker.bindPopup("Cette station est fermée pour le moment veuillez nous excusez pour le dérangement.");
             };
           }  //fin de for
-    });
-  } //fin loadMarkers()
+      });
+    } //fin loadMarkers()
 
   
   //utilisé quand le client va fermer ou actualiser son navigateur les  infos restent
-  stockNomPrenom(){ //on stock le nom et prénom dans un localStorage pour qu'ils soient prérempli au rechargement
+  stockNomPrenom(){ //on stock le nom et prénom dans un localStorage pour qu'ils soient prérempli au rechargement même si le navigateur est fermé
     let nom = document.getElementById('nom');
     let prenom = document.getElementById('prenom');
     if (localStorage.getItem('autosavenom')){
@@ -133,25 +125,25 @@
       localStorage.setItem('autosaveprenom', prenom.value);
     });
    
-      }// Fin stockInfosNomPrenom()
+  }// Fin stockInfosNomPrenom()
  
 //----------------------------------------------------------------
 //        Bloc réservation de la station
 
   initRerservationListener(){
-        $('#validationbouton').on('click',  () =>{ //conditions pour pouvoir lancer la réservation
-        const station = $('#reservation').text();
-        if((document.getElementById('nom').value === "") || (document.getElementById('prenom').value === "")){ // si Nom et Prénom pas rempli on ne lance pas fonction confirmation
-          alert("Merci de rentrer le nom et le prénom");
-        } 
-        else if($('#texttimer').text() !== "" && !$('#texttimer').text().startsWith("Votre réservation à la station")){ //Vérifie si texttimer écrit ou si écrit Votre réservation à la sation... est écrit on affiche alert
-          alert("erreur vous avez déjà une réservation merci de l'annulez avant de reprendre un nouveau vélo"); // Affiche message alert en pop-up
-        }
-        else{
+    $('#validationbouton').on('click',  () =>{ //conditions pour pouvoir lancer la réservation
+      const station = $('#reservation').text();
+      if((document.getElementById('nom').value === "") || (document.getElementById('prenom').value === "")){ // si Nom et Prénom pas rempli on ne lance pas fonction confirmation
+        alert("Merci de rentrer le nom et le prénom");
+      } 
+      else if($('#texttimer').text() !== "" && !$('#texttimer').text().startsWith("Votre réservation à la station")){ //Vérifie si texttimer écrit ou si écrit Votre réservation à la sation... est écrit on affiche alert
+        alert("erreur vous avez déjà une réservation merci de l'annulez avant de reprendre un nouveau vélo"); // Affiche message alert en pop-up
+      }
+      else{
         this.confirmation(station);
-        }
-        
-      });
+      }
+          
+    });
   } //fin initRerservationListener()
 
   confirmation(textStation){ //méthode pour lancer le timer start de l'objet Timer

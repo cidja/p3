@@ -1,5 +1,5 @@
 //Création de l'objet slider et de ses caractéristiques//
-//Creating the slider object and its characteristics//
+
 class slider {
     constructor(cible, tableau, repertoire, duree) {
       this.cible = document.getElementById(cible);
@@ -12,7 +12,7 @@ class slider {
     }
   
   //Fonction d'animation du slider//
-  // Slider animation function//
+ 
     launchSlider() {
       this.tbimage++;
       this.cible.src = this.repertoir_images + this.tableau[this.tbimage] + '.png';
@@ -27,13 +27,14 @@ class slider {
       );
     }
     
-    pause() { //pour mettre en pause le diapo
+  //Fonction pause du diapo
+    pause() { 
       clearTimeout(this.timeout); 
       this.temp = null;
     }
 
   //Fonction Next et Prev//
-  //Next and Prev function//
+  
     next() {
       this.tbimage++;
       if (this.tbimage > (this.tableau.length - 1)) {
@@ -56,12 +57,10 @@ class slider {
   }
   
   //Initialisation du slider en créant le tableau d'image 1//
-  //Initializing the slider by creating the picture array 1//
-  let slideImages_1 = ['1','2','3'];
-  let mySlider = new slider('diap1', slideImages_1, 'img/', 5000);
+  let slideImages_1 = ['1','2','3']; //on rentre le nom des images du slider sans leur extension
+  let mySlider = new slider('diap1', slideImages_1, 'img/', 5000); //Création de l'objet Slider
   
   //Activation des fonctions au clic//
-  //Activate function to click//
   $('#next').on('click', function(){
     mySlider.next();
   });
