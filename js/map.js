@@ -131,11 +131,19 @@
 //        Bloc réservation de la station
 
   initRerservationListener(){
+    $("#canvas").on("click", () =>{ //si pas de click sur  canvas on ne colore pas le bouton  validation et impossible  de  passer à la suite
+      $("#validationbouton").show();
+      $("#validationbouton").css("background-color", "#33CC00");
+
+    });
     $('#validationbouton').on('click',  () =>{ //conditions pour pouvoir lancer la réservation
       const station = $('#reservation').text();
-      if((document.getElementById('nom').value === "") || (document.getElementById('prenom').value === "")){ // si Nom et Prénom pas rempli on ne lance pas fonction confirmation
+      if((document.getElementById("reservation") === null)){ // Vérifie si une station est sélectionnée 
+        alert("Sélectionner une station tout d'abord");
+      }
+      else if((document.getElementById('nom').value === "") || (document.getElementById('prenom').value === "")){ // si Nom et Prénom pas rempli on ne lance pas fonction confirmation
         alert("Merci de rentrer le nom et le prénom");
-      } 
+      }
       else if($('#texttimer').text() !== "" && !$('#texttimer').text().startsWith("Votre réservation à la station")){ //Vérifie si texttimer écrit ou si écrit Votre réservation à la sation... est écrit on affiche alert
         alert("erreur vous avez déjà une réservation merci de l'annulez avant de reprendre un nouveau vélo"); // Affiche message alert en pop-up
       }

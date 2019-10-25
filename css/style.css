@@ -7,12 +7,30 @@
 
 *,*::before, *::after {box-sizing: border-box;} /* */
 *{
-    font-family: 'Courgette', sans-serif, "Arial"; /*Définition de la police d'écriture pour tous le document */
+    font-family: 'Nunito', sans-serif, "Arial"; /*Définition de la police d'écriture pour tous le document */
 }
 
 
 body{
-    background-color: #5eb7b7;
+    margin: 0px;
+    background: url('../img/background.jpg');
+    background-size: cover;
+    padding-bottom: 50px; /* pour aérer le bas de la page */
+    cursor: url("../img/cursor.png"),pointer; /* remplacement de la souris par cette image */
+
+}
+.titre1{
+    animation: 2s infinite alternate blink;
+    color: black;
+}
+
+@keyframes blink{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 100;
+    }
 }
 /*-----------------------------------------------------------------------------------------------------------
             Partie slider 
@@ -52,8 +70,10 @@ body{
 /*-----------------------------------------------------------------------------------------------------------
             partie carte et cadre réservation
 -----------------------------------------------------------------------------------------------------------*/
+
 #map{
     width: 59%;
+    
 }
 #conteneurstation{
     background-color: #1687a7;
@@ -63,6 +83,7 @@ body{
     background-color: white;
     margin-top: 10px;
     border-radius: 10px;
+    cursor: default;
 }
 #effacercanvas{
     background-color: #FF3300; /* fond de couleur rouge pour le bouton effacer canvas */
@@ -72,7 +93,7 @@ body{
     padding: 10px 20px; /*pour grossir le bouton et l'aérer */
 }
 #validationbouton{
-    background-color: #33CC00; /* fond de couleur rouge pour le bouton effacer canvas */
+    background-color: grey; /* fond de couleur rouge pour le bouton effacer canvas */
     border-radius: 10px; /*mis bords arrondis */
     border: 0px; /*suppression de la bordure */
     font-size: 20px; /*20px de size*/
@@ -91,6 +112,10 @@ top: 360px;
 }
 .leaflet-popup{
     font-size: 18px;
+}
+
+input, label{
+    cursor: url("../img/cursor.png"),pointer;
 }
 
 /*--------------------------------------------------------------------------------

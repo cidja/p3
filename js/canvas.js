@@ -32,6 +32,34 @@ class Canvas{
       self.draw = false;
     });
 
+    //pour le tactile
+    this.canvas.addEventListener("touchstart", function (e) {
+      self.mousePosition = self.getTposition(e);
+       var touch = e.touches[0];
+       var mouseEvent = new MouseEvent("mousedown", {
+           clientX: touch.clientX,
+           clientY: touch.clientY
+       });
+       self.canvas.dispatchEvent(mouseEvent);
+   });
+
+   this.canvas.addEventListener("touchmove", function (e) {
+       var touch = e.touches[0];
+       var mouseEvent = new MouseEvent("mousemove", {
+           clientX: touch.clientX,
+           clientY: touch.clientY
+       });
+       self.canvas.dispatchEvent(mouseEvent);
+   });
+
+   this.canvas.addEventListener("touchend", function (e) {
+       var mouseEvent = new MouseEvent("mouseup", {});
+       self.canvas.dispatchEvent(mouseEvent);
+   });
+
+
+
+
  //Effacer    
     document.getElementById("effacercanvas").addEventListener("click", function(e){
     self.clearCanvas()
@@ -49,6 +77,15 @@ class Canvas{
     }
   } //fin getMposition
 
+  // Renvoie les coordonnées du pad 
+  getTposition(touchEvent) {
+    var oRect = this.canvas.getBoundingClientRect();
+    return {
+        x: touchEvent.touches[0].clientX - oRect.left,
+        y: touchEvent.touches[0].clientY - oRect.top
+    };
+}
+
   // Dessin du canvas
   canvasResult(){
     if (this.draw) {
@@ -63,6 +100,9 @@ class Canvas{
   clearCanvas(){
       this.canvas.width = this.canvas.width;
       this.ctx.lineWidth = 3;
+  }
+  ifCanvasDraw(){
+    
   }
 }
 

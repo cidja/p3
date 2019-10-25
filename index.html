@@ -2,11 +2,11 @@
 <html>
     <head>
         <title>La carte de location de vélo</title>
-        <meta charset='utf8' /> <!--Définition d'un encodage d'écriture-->
+        <meta charset='utf-8'/> <!--Définition d'un encodage d'écriture-->
         <link rel='stylesheet' href='css/main.css' /> <!--Inclusion du fihicer main.css pour les classes générique-->
         <link rel='stylesheet' href='css/style.css' /> <!--Inclusion du fichier style.css pour les règles css spécifiques-->
         <link rel='stylesheet' href='fonts/css/all.css' /> <!--pour la police font awesome source: https://fontawesome.com/how-to-use/on-the-web/setup/hosting-font-awesome-yourself-->
-        <link href="https://fonts.googleapis.com/css?family=Courgette|Lobster|Nunito&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" /> <!--POur gérer la carte CDN-->
         <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script> <!--Inlusion fichiers pour maps leaflet-->
         <script
@@ -29,23 +29,24 @@
         </section>
 
         <!--Conteneur pour la map et la partie détails réservation-->
-        <div class="conteneurMapReservation maxw1400px autolr mt80px flex justify-between">
+        <div class="conteneurMapReservation maxw1400px autolr mt10px flex justify-between">
             <!--Partie map-->
-            <div id="map" class="map h600px  +">
+            <div id="map" class="map h600px borderradius10px +">
             </div>
             
             <!--Partie détails de la réservation qui apparait au clic sur une station dans la partie map-->
             <div id='conteneurstation' class="conteneurDetailStation h600px borderrad50px flexdcol justify-center align-center +"> 
+                <div  id='messageerreur' ></div>
                 <div id="formreservation" class="h600px flex flexdcol align-center justify-center">
                     <div id=choixstation></div>
                     <label for="nom" class="txtcenter">Nom  <br/> <input type="text" name="nom" id="nom" class="txtcenter borderradius10px mb20px" placeholder="nom" required></label>
                     <br/>
                     <label for="prenom" class="txtcenter">Prénom  <br/> <input type="text" name="prenom" id="prenom" class="txtcenter borderradius10px" placeholder="prénom" required></label>
                     <br/>
-                    <canvas id='canvas' class='borderTest'></canvas>
+                    <canvas id='canvas'></canvas>
                     <div id="conteneurboutons" class="w80p mt20px flex justify-between">
                         <input id='effacercanvas' type='button' value='effacer la signature'/>
-                        <input id='validationbouton' type='button' value='valider'/>
+                        <input id='validationbouton' class="dnone" type='button' value='valider'/>
                     </div>
                 </div>
             </div>
@@ -55,7 +56,7 @@
         <div id="infosReservation" class="maxw1400px autolr txtcenter w100p mt10px pad30px borderrad50px">
             <div  id='texttimer' class="fs25px"></div>
             <div  id='timer'></div>
-            <div id='texteannulation' class='dnone'>La réservation est annulée</div>
+            <div id='texteannulation' class='dnone fs25px'>La réservation est annulée</div>
             <input id="annulation" type="button" value="annuler réservation"/>
         </div>
 

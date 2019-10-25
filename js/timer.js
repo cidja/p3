@@ -50,6 +50,7 @@ class Timer{
         //this.canvas.clear();
         sessionStorage.removeItem("timer"); // Suppression du sessionStorage pour timer (donc quand clic sur annuler supprime session timer plus de temps allouer)
         $('#texttimer').text(""); // réecriture de texttimer pour indiquer vide permet à la condition du bouton valider de fonctionner 
+        $("#validationbouton").hide();
         $('#texteannulation').show(); // Affiche  réservation annulée
         setTimeout(function () {
             $('#texteannulation').hide(1000); //cache test

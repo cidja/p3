@@ -1,8 +1,8 @@
 //Création de l'objet slider et de ses caractéristiques//
 
 class slider {
-    constructor(cible, tableau, repertoire, duree) {
-      this.cible = document.getElementById(cible);
+    constructor(tableau, repertoire, duree) {
+      this.cible = document.getElementById("diap1");
       this.tableau = tableau;
       this.temp = duree;
       this.repertoir_images = repertoire;
@@ -14,7 +14,7 @@ class slider {
   //Fonction d'animation du slider//
  
     launchSlider() {
-      this.tbimage++;
+      this.tbimage++; // Incrémenté directement a 0
       this.cible.src = this.repertoir_images + this.tableau[this.tbimage] + '.png';
       if (this.tbimage === this.tableau.length - 1) {
         this.tbimage = -1;
@@ -57,8 +57,8 @@ class slider {
   }
   
   //Initialisation du slider en créant le tableau d'image 1//
-  let slideImages_1 = ['1','2','3']; //on rentre le nom des images du slider sans leur extension
-  let mySlider = new slider('diap1', slideImages_1, 'img/', 5000); //Création de l'objet Slider
+  let slideImages_1 = ['1','2','3','4','5']; //on rentre le nom des images du slider sans leur extension
+  let mySlider = new slider(slideImages_1, 'img/', 5000); //Création de l'objet Slider avec son constructeur
   
   //Activation des fonctions au clic//
   $('#next').on('click', function(){
