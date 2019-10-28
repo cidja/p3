@@ -10,7 +10,8 @@ class Timer{
     start(stationAddress) {
         this.stationAddress = stationAddress;
         clearInterval(intervalID);
-        if(sessionStorage.getItem("timer") == undefined){ //fonction qui va vérifier si temps déja défini si non règle le temps à 1200 sec (20 minutes)
+       
+       if(sessionStorage.getItem("timer") == undefined){ //fonction qui va vérifier si temps déja défini si non règle le temps à 1200 sec (20 minutes)
             sessionStorage.setItem('timer', 1200);
         }
         this.time = sessionStorage.getItem("timer");
@@ -22,7 +23,7 @@ class Timer{
             sessionStorage.setItem("timer", this.time);
             const{minutes, seconds} = this.getMinutesAndSeconds(this.time);
             this.textTimer.innerHTML =
-            `Vous avez bien réservé un vélo à <span class="infosimportantes">${this.stationAddress}<span> votre réservation expirera dans :  <span class="infosimportantes">${minutes}:${seconds}</span>`;
+            `Vous avez bien réservé 1 vélo à <span class="infosimportantes">${this.stationAddress}<span> cette réservation expirera dans : <br/> <span class="infosimportantes">${minutes}:${seconds}</span>`;
             this.updateTime();
             if (this.time === 0){
                 clearInterval(intervalID);
@@ -42,6 +43,9 @@ class Timer{
         if(sessionStorage.getItem("station") && sessionStorage.getItem('timer')){
             this.start(sessionStorage.getItem('station'), sessionStorage.getItem('timer'));
         }
+    }
+    restartTime(){ //méthode qui va servir pour restart le timer quand on fait une nouvelle réservation. Utilisé dans map
+        sessionStorage.removeItem("timer");
     }
 
     stopTime(){ // pour arrêter le chrono

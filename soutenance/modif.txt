@@ -1,0 +1,3 @@
+- une fois la réservation validée, un vélo est marqué comme réservé à la station 
+
+- une réservation à la fois si une nouvelle réservation écrase l'ancienne réservation  ok FAIT

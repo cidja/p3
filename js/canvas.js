@@ -101,9 +101,7 @@ class Canvas{
       this.canvas.width = this.canvas.width;
       this.ctx.lineWidth = 3;
   }
-  ifCanvasDraw(){
-    
-  }
+  
 }
 
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr-FR">
     <head>
         <title>La carte de location de vélo</title>
         <meta charset='utf-8'/> <!--Définition d'un encodage d'écriture-->
@@ -7,7 +7,7 @@
         <link rel='stylesheet' href='css/style.css' /> <!--Inclusion du fichier style.css pour les règles css spécifiques-->
         <link rel='stylesheet' href='fonts/css/all.css' /> <!--pour la police font awesome source: https://fontawesome.com/how-to-use/on-the-web/setup/hosting-font-awesome-yourself-->
         <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" /> <!--POur gérer la carte CDN-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" /> <!--Pour gérer la carte CDN-->
         <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script> <!--Inlusion fichiers pour maps leaflet-->
         <script
 			  src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -35,19 +35,19 @@
             </div>
             
             <!--Partie détails de la réservation qui apparait au clic sur une station dans la partie map-->
-            <div id='conteneurstation' class="conteneurDetailStation h600px borderrad50px flexdcol justify-center align-center +"> 
-                <div  id='messageerreur' ></div>
-                <div id="formreservation" class="h600px flex flexdcol align-center justify-center">
+            <div id='conteneurstation' class="conteneurDetailStation h600px borderrad50px +"> 
+                <div id="formreservation" class="h600px flex flexdcol align-center justify-center fs20px">
+                    <div>Station sélectionnée :</div>
                     <div id=choixstation></div>
-                    <label for="nom" class="txtcenter">Nom  <br/> <input type="text" name="nom" id="nom" class="txtcenter borderradius10px mb20px" placeholder="nom" required></label>
+                    <div id="infosstation" class="txtcenter"></div>
+                    <input type="text" name="nom" id="nom" class="txtcenter borderradius10px mt20px mb20px " placeholder="Nom" required>
                     <br/>
-                    <label for="prenom" class="txtcenter">Prénom  <br/> <input type="text" name="prenom" id="prenom" class="txtcenter borderradius10px" placeholder="prénom" required></label>
+                    <input type="text" name="prenom" id="prenom" class="txtcenter borderradius10px" placeholder="Prénom" required>
                     <br/>
                     <canvas id='canvas'></canvas>
-                    <div id="conteneurboutons" class="w80p mt20px flex justify-between">
-                        <input id='effacercanvas' type='button' value='effacer la signature'/>
-                        <input id='validationbouton' class="dnone" type='button' value='valider'/>
-                    </div>
+                    <input id='effacercanvas' class="mt20px" type='button' value='effacer la signature'/>
+                    <br/>
+                    <input id='validationbouton' class="dnone mt20px" type='button' value='valider'/>
                 </div>
             </div>
         </div>

@@ -73,7 +73,6 @@ class slider {
   });
   $("#play").on("click", function(){
     mySlider.launchSlider();
-    console.log("on rentre");
   })
   $(document).keydown(function (e) {
     if (e.keyCode === 37){

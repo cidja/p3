@@ -16,7 +16,7 @@ body{
     background: url('../img/background.jpg');
     background-size: cover;
     padding-bottom: 50px; /* pour aérer le bas de la page */
-    cursor: url("../img/cursor.png"),pointer; /* remplacement de la souris par cette image */
+   
 
 }
 .titre1{
@@ -113,11 +113,6 @@ top: 360px;
 .leaflet-popup{
     font-size: 18px;
 }
-
-input, label{
-    cursor: url("../img/cursor.png"),pointer;
-}
-
 /*--------------------------------------------------------------------------------
         Partie timer et annulation
 --------------------------------------------------------------------------------*/
@@ -137,7 +132,9 @@ input, label{
     font-size: 20px;
 }
 
-
+#nom, #prenom{
+    padding: 5px 70px; /*pour agrandir la zone de texte */
+}
 
 
 /*--------------------------------------------------
@@ -149,6 +146,7 @@ input, label{
 @media only screen and (max-width: 1024px){
     .conteneurMapReservation {
         display: block;
+        margin-top: 5px;
     }
     #map{
         width: 70%;
@@ -159,9 +157,14 @@ input, label{
     }
     #conteneurstation, #formreservation{
         width: 70%;
-        height: 400px;
+        height: 600px;
         margin-left: auto;
         margin-right: auto;
+    }
+    #formreservation{
+        display: block;
+        text-align: center;
+        padding-top: 20px;
     }
 
  }

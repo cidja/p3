@@ -5,9 +5,7 @@
     this.map;
     this.initMap();
     this.loadMarkers(this.map);
-    this.canvas = new Canvas();
     this.timer.restartExistingTimer();
-    this.clearCanvas();
     this.stockNomPrenom();
     this.initRerservationListener();
   }
@@ -68,14 +66,21 @@
               marker.bindPopup(`
               Station -> ${nameConvert} 
               <br>
-               adresse -> ${addresse}
+               Adresse -> ${addresse}
               <br> 
               Nombre de places -> ${nbPlaces} 
               <br>
               Vélos disponible -> <strong>${velosDisponible}</strong>`);
               $(marker).on('click', function() {
-              
-              $('#choixstation').html("Station sélectionnée :<br/>  <span id=\"reservation\">" + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
+              $("#infosstation").html(
+                `
+                 Adresse: ${addresse}
+                <br> 
+                Nombre de places: ${nbPlaces} 
+                <br>
+                Vélos disponible: <strong>${velosDisponible}</strong>`
+                );
+              $('#choixstation').html("<span id=\"reservation\">" + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
               });
             }
             else if((velosDisponible <= 3) & (velosDisponible > 0)) { //Sinon on affiche icon orange 
@@ -83,14 +88,14 @@
               marker.bindPopup(`
               Station -> ${nameConvert} 
               <br>
-               adresse -> ${addresse}
+               Adresse -> ${addresse}
               <br> 
               Nombre de places -> ${nbPlaces} 
               <br>
               Vélos disponible -> <strong>${velosDisponible}</strong>`);
               $(marker).on('click', function(){
               
-              $('#choixstation').html("Station sélectionnée :<br/>" + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
+              $('#choixstation').html("<span id=\"reservation\">" + nameConvert); // Affiche le nom de la station au dessus du formulaire de renseignement du nom et prénom pour bien confirmer au client quelle station il sélectionne
               });
             }
             else if(velosDisponible = 0) { //Si aucun vélo disponible affiche image orange barrée
@@ -144,9 +149,9 @@
       else if((document.getElementById('nom').value === "") || (document.getElementById('prenom').value === "")){ // si Nom et Prénom pas rempli on ne lance pas fonction confirmation
         alert("Merci de rentrer le nom et le prénom");
       }
-      else if($('#texttimer').text() !== "" && !$('#texttimer').text().startsWith("Votre réservation à la station")){ //Vérifie si texttimer écrit ou si écrit Votre réservation à la sation... est écrit on affiche alert
+     /* else if($('#texttimer').text() !== "" && !$('#texttimer').text().startsWith("Votre réservation à la station")){ //Vérifie si texttimer écrit ou si écrit Votre réservation à la sation... est écrit on affiche alert
         alert("erreur vous avez déjà une réservation merci de l'annulez avant de reprendre un nouveau vélo"); // Affiche message alert en pop-up
-      }
+      }*/
       else{
         this.confirmation(station);
       }
@@ -155,14 +160,11 @@
   } //fin initRerservationListener()
 
   confirmation(textStation){ //méthode pour lancer le timer start de l'objet Timer
+    this.timer.restartTime(); /*appel la méthode restartTime() car dans les consignes si on réserve un nouveau vélo ça écrase l'ancienne réservation */
     this.timer.start(textStation);
-  }
+    }
 
-  clearCanvas(){
-    $('#effacercanvas').on('click', () =>{
-      this.canvas.clear();
-    })
-  }
+  
 
 } //Fin de l'objet map
 new Map;
